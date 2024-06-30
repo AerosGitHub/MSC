@@ -1,9 +1,15 @@
 <script setup lang="ts">
-
-
 import StudentCouncilText from "@/components/texts/StudentCouncilText.vue";
 import InputField from "@/components/InputField.vue";
 import StyleClickButton from "@/components/StyleClickButton.vue";
+import {useRouter} from "vue-router";
+
+const router = useRouter();
+
+function OnEnterButtonClick() {
+  router.push("/news")
+}
+
 </script>
 
 <template>
@@ -20,7 +26,7 @@ import StyleClickButton from "@/components/StyleClickButton.vue";
       <InputField/>
       <h3 class="login-password">Пароль</h3>
       <InputField type="password"/>
-      <StyleClickButton class="style-button"/>
+      <StyleClickButton @click="OnEnterButtonClick" class="style-button"/>
     </div>
   </div>
 </template>
