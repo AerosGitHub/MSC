@@ -14,6 +14,11 @@ button {
   border-radius: 10px;
   border: none;
   background: #BAEDFD;
+  cursor: pointer;
+}
+
+button:hover {
+  box-shadow: 0 0 5px var(--color-shadow);
 }
 
 button:active {

@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import EnterPage from "@/views/EnterPage.vue";
+
 import NewsPage from "@/views/NewsPage.vue";
+import Authorisation from "@/views/Authorisation.vue";
 
 
 const router = createRouter({
@@ -9,7 +10,7 @@ const router = createRouter({
     {
       path: '/',
       name: 'enterPage',
-      component: EnterPage
+      component: Authorisation
     },
     {
       path: '/news',

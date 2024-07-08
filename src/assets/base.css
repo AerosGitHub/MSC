@@ -7,7 +7,9 @@
 
 /* semantic color variables for this project */
 :root {
-    --color-background: white;
+    --color-background: #f4f4f4;
+    --color-item-background: #FFFFFF;
+    --color-shadow: #aeaeae;
     --color-text: black;
     --h1-font-size: 30px;
     --h2-font-size: 26px;

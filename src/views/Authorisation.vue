@@ -3,11 +3,29 @@ import StudentCouncilText from "@/components/texts/StudentCouncilText.vue";
 import InputField from "@/components/InputField.vue";
 import StyleClickButton from "@/components/StyleClickButton.vue";
 import {useRouter} from "vue-router";
+import {ref} from "vue";
 
 const router = useRouter();
 
-function OnEnterButtonClick() {
-  router.push("/news")
+const InputLoginPassword = ref({login: "login", password: "password"});
+
+
+async function OnEnterButtonClick(Input: any) {
+
+  let response = await fetch("/api/authorise", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      login: Input.login,
+      password: Input.password
+    })
+  })
+  if (response.ok) {
+    await router.push("/news");
+  }
+
 }
 
 </script>
@@ -23,10 +41,10 @@ function OnEnterButtonClick() {
     <div class="sign-in-block">
       <h2 class="enter-text">Вход</h2>
       <h3 class="login-password">Логин</h3>
-      <InputField/>
+      <InputField v-model="InputLoginPassword.login"/>
       <h3 class="login-password">Пароль</h3>
-      <InputField type="password"/>
-      <StyleClickButton @click="OnEnterButtonClick" class="style-button"/>
+      <InputField v-model="InputLoginPassword.password" type="password"/>
+      <StyleClickButton @click="OnEnterButtonClick(InputLoginPassword)" class="style-button"/>
     </div>
   </div>
 </template>
@@ -35,18 +53,20 @@ function OnEnterButtonClick() {
 
 .icon {
   width: 145px;
+  box-shadow: 0 0 3px var(--color-shadow);
 }
 
 .header-group {
   display: flex;
   flex-direction: column;
-  justify-content: start;
+  justify-content: center;
 }
 
 .logo {
   margin: 15px 0;
   display: flex;
   justify-content: center;
+  gap: 10px;
   align-items: center;
 }
 
@@ -65,9 +85,10 @@ function OnEnterButtonClick() {
   flex-direction: column;
   justify-content: space-between;
   gap: 23px;
-  border: solid 2px black;
-  border-radius: 10px;
+  border-radius: 25px;
   padding: 10px 20px;
+  background: var(--color-item-background);
+  box-shadow: 0 0 5px var(--color-shadow);
 }
 
 .enter-text {
@@ -76,5 +97,10 @@ function OnEnterButtonClick() {
 
 .style-button {
   margin: 70px 0;
+  box-shadow: 0 0 2px var(--color-shadow);
+}
+
+.logo img {
+  border-radius: 20px;
 }
 </style>
